@@ -1,12 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { TextField, RaisedButton } from 'material-ui';
+import { userInfoStyle, customPadding } from './style';
 
-import { userInfoStyle } from './style';
-
-const textfieldStyled = {
-  padding: '0px 5px',
-};
 
 // eslint-disable-next-line
 export default class AddSkills extends React.Component {
@@ -29,7 +25,7 @@ export default class AddSkills extends React.Component {
     return (
       <div>
         <h5 style={userInfoStyle}>Skills</h5>
-        <div style={textfieldStyled}>
+        <div style={customPadding}>
           <div>
             {this.state.inputs.map((input, name) => (
               <TextField

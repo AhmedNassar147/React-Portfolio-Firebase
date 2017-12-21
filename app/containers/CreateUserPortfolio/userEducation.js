@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { TextField, RaisedButton, MenuItem, DropDownMenu } from 'material-ui';
-import { userInfoStyle } from './style';
-const textfieldStyled = {
-  padding: '0px 5px',
-};
+import { userInfoStyle, customPadding, customWidth } from './style';
+
+
 // eslint-disable-next-line
 export class UserEducation extends React.Component {
   constructor(props) {
@@ -33,7 +32,7 @@ export class UserEducation extends React.Component {
     return (
       <div>
         <h5 style={userInfoStyle}>Education</h5>
-        <div style={textfieldStyled}>
+        <div style={customPadding}>
           <div>
             <TextField
               type="text"
@@ -75,10 +74,10 @@ export class UserEducation extends React.Component {
               onChange={userEducationFormChanged}
             />
             <DropDownMenu
-              autoWidth
+              autoWidth={false}
+              style={customWidth}
               animated
               maxHeight={300}
-              style={{ width: '50%' }}
               value={this.state.fromYear}
               onChange={this.handleFromYearChange}
               targetOrigin={{ horizontal: 'left', vertical: 'bottom' }}
@@ -88,10 +87,10 @@ export class UserEducation extends React.Component {
             </DropDownMenu>
 
             <DropDownMenu
-              autoWidth
+              autoWidth={false}
+              style={customWidth}
               animated
               maxHeight={300}
-              style={{ width: '50%' }}
               value={this.state.toYear}
               onChange={this.handleToYearChange}
               targetOrigin={{ horizontal: 'left', vertical: 'bottom' }}

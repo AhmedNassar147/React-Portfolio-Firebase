@@ -1,11 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { TextField, DatePicker, RaisedButton } from 'material-ui';
-import { userInfoStyle } from './style';
+import { userInfoStyle, customPadding } from './style';
 
-const textfieldStyled = {
-  padding: '0px 5px',
-};
+
 // eslint-disable-next-line
 export default class UserExperience extends React.Component {
   constructor() {
@@ -35,7 +33,7 @@ export default class UserExperience extends React.Component {
     return (
       <div>
         <h5 style={userInfoStyle}>Experience</h5>
-        <div style={textfieldStyled}>
+        <div style={customPadding}>
           <div>
             <TextField
               type="text"

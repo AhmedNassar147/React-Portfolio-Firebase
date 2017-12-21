@@ -19,11 +19,6 @@ import Appbar from '../../components/Appbar/index';
 import SliderGalary from '../../components/SliderGalary/index';
 import Intro from '../../components/Intro/index';
 
-const containerStyle = {
-  width: '95%',
-  margin: 'auto',
-};
-
 // eslint-disable-next-line
 export class MainPage extends React.Component {
   componentWillMount() {
@@ -38,7 +33,7 @@ export class MainPage extends React.Component {
       headToCreatePortfolio,
     } = this.props;
     return (
-      <div style={containerStyle}>
+      <div>
         <div>
           <Appbar
             currentUser={currentUser}

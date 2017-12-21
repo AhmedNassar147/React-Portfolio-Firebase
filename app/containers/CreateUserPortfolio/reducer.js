@@ -8,13 +8,11 @@ const initialState = fromJS({
   datePickerData: {},
   userEducationFormData: {},
   dropdownChangedData: {},
-  userImageData: {},
 
   personalInfo: {},
   userSkills: {},
   userExperience: {},
   userEducation: {},
-  userImage: {},
 
   error: false,
 });
@@ -28,13 +26,6 @@ function createUserPortfolioReducer(state = initialState, action) {
         personalinfoFormData: {
           ...oldState.personalinfoFormData,
           [action.inputName]: action.inputValue,
-        },
-      });
-    case createUserPortfolioConstants.USER_IMAGE_CHANGED:
-      return state.merge({
-        userImageData: {
-          ...oldState.userImageData,
-          [action.name]: action.imageUrl,
         },
       });
 
@@ -73,10 +64,6 @@ function createUserPortfolioReducer(state = initialState, action) {
     case createUserPortfolioConstants.ADDING_INFO_SUCCESS:
       return state.merge({
         personalInfo: action.userInfo,
-      });
-    case createUserPortfolioConstants.ADD_USER_IMAGE_SUCCESS:
-      return state.merge({
-        userImage: action.imageData,
       });
 
     case createUserPortfolioConstants.ADDING_SKILLS_SUCCESS:

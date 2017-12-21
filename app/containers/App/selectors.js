@@ -4,16 +4,20 @@ const selectGlobal = (state) => state.get('global');
 
 const selectRoute = (state) => state.get('route');
 
-const makeSelectCurrentUser = () =>
+export const makeSelectCurrentUser = () =>
   createSelector(selectGlobal, (globalState) =>
     globalState.get('userData').toJS()
   );
 
 const makeSelectSliderImages = () =>
-  createSelector(selectGlobal, (globalState) => globalState.get('images').toJS());
+  createSelector(selectGlobal, (globalState) =>
+    globalState.get('images').toJS()
+  );
 
 const makeSelectLocation = () =>
-  createSelector(selectRoute, (routeState) => routeState.get('location').toJS());
+  createSelector(selectRoute, (routeState) =>
+    routeState.get('location').toJS()
+  );
 
 const makeSelectRepos = () =>
   createSelector(selectGlobal, (globalState) =>
@@ -32,7 +36,5 @@ export {
   makeSelectRepos,
   makeSelectLoading,
   makeSelectError,
-  makeSelectCurrentUser,
-  // makeSelectCurrentAdminData,
   makeSelectSliderImages,
 };

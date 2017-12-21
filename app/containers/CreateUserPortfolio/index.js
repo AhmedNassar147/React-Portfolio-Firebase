@@ -14,14 +14,16 @@ import reducer from './reducer';
 import saga from './saga';
 import createUserPortolioActions from './actions';
 import UserInfo from './UserInfo';
-import ProfilePage from './userImage';
 import AddSkills from './userSkills';
 import UserExperience from './userExperiece';
 import UserEducation from './userEducation';
-import UserImages from './userImage2';
+import UserImages from './userImage';
+import { makeSelectCurrentUser } from '../App/selectors';
 
 const slide = {
-  padding: 10,
+  padding: 15,
+  minHeight: 100,
+  color: '#fff',
 };
 
 // eslint-disable-next-line
@@ -52,14 +54,15 @@ export class CreateUserPortfolio extends React.Component {
       onUserEducationFormChanged,
       onDropdownChanged,
       onRequestAddEducation,
-      OnUserImageChanges,
-      onRequestAddUserImage,
+      currentUser,
     } = this.props;
     return (
-      <div style={{ paddingLeft: '5px' }}>
+      <div>
         <Tabs onChange={this.handleChange} value={this.state.slideIndex}>
-          <Tab label="First Step" value={0} />
-          <Tab label="Second Step" value={1} />
+          <Tab label="personal info" value={0} />
+          <Tab label="Image and Skills" value={1} />
+          <Tab label="Experience" value={2} />
+          <Tab label="Education" value={3} />
         </Tabs>
         <SwipeableViews
           index={this.state.slideIndex}
@@ -67,30 +70,23 @@ export class CreateUserPortfolio extends React.Component {
         >
           <div style={slide}>
             <Paper>
-              <UserImages
-                userImageChanges={OnUserImageChanges}
-                requestAddUserImage={onRequestAddUserImage}
-              />
-            </Paper>
-            <Paper>
               <UserInfo
                 personalInfoFormChanged={personalInfoFormChanged}
                 requestAddPersonalInfo={onRequestAddPersonalinfo}
               />
             </Paper>
-
+          </div>
+          <div style={slide}>
+            <Paper>
+              <UserImages currentUser={currentUser} />
+            </Paper>
             <Paper>
               <AddSkills
                 skillsFormChanged={onSkillsFormChanged}
                 addingUserSkills={OnRequestAddingUserSkills}
               />
             </Paper>
-
-            <Paper>
-              <ProfilePage />
-            </Paper>
           </div>
-
           <div style={slide}>
             <Paper>
               <UserExperience
@@ -99,7 +95,9 @@ export class CreateUserPortfolio extends React.Component {
                 requestAddExperience={onRequestAddExperience}
               />
             </Paper>
+          </div>
 
+          <div style={slide}>
             <Paper>
               <UserEducation
                 userEducationFormChanged={onUserEducationFormChanged}
@@ -107,7 +105,6 @@ export class CreateUserPortfolio extends React.Component {
                 requestAddEducation={onRequestAddEducation}
               />
             </Paper>
-            <br />
           </div>
         </SwipeableViews>
       </div>
@@ -127,12 +124,12 @@ CreateUserPortfolio.propTypes = {
   onUserEducationFormChanged: PropTypes.func.isRequired,
   onRequestAddEducation: PropTypes.func.isRequired,
   onDropdownChanged: PropTypes.func.isRequired,
-  OnUserImageChanges: PropTypes.func.isRequired,
-  onRequestAddUserImage: PropTypes.func.isRequired,
+  currentUser: PropTypes.objectOf(PropTypes.object),
 };
 
 const mapStateToProps = createStructuredSelector({
   createuserportfolio: makeSelectCreateUserPortfolio(),
+  currentUser: makeSelectCurrentUser(),
 });
 
 function mapDispatchToProps(dispatch) {
@@ -150,16 +147,6 @@ function mapDispatchToProps(dispatch) {
 
     onRequestAddPersonalinfo: () =>
       dispatch(createUserPortolioActions.requestAddPersonalInfo()),
-
-    OnUserImageChanges: (name, imageUrl) =>
-      dispatch(
-        createUserPortolioActions.userImagesChanged({
-          name,
-          imageUrl,
-        })
-      ),
-    onRequestAddUserImage: () =>
-      dispatch(createUserPortolioActions.requestAddUserImage()),
 
     onSkillsFormChanged: (event, value) =>
       dispatch(

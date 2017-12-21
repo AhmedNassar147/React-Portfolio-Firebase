@@ -35,23 +35,6 @@ export default {
     formErrors,
   }),
 
-  userImagesChanged: ({ name, imageUrl }) => ({
-    type: createUserPortolioConstants.USER_IMAGE_CHANGED,
-    name,
-    imageUrl,
-  }),
-  requestAddUserImage: () => ({
-    type: createUserPortolioConstants.REQUEST_ADD_USER_IMAGE,
-  }),
-  adduserImageSuccess: (imageData) => ({
-    type: createUserPortolioConstants.ADD_USER_IMAGE_SUCCESS,
-    imageData,
-  }),
-  adduserImageFailure: (error) => ({
-    type: createUserPortolioConstants.ADD_USER_IMAGE_FAILURE,
-    error,
-  }),
-
   skillsFormChanged: ({ inputName, inputValue }) => ({
     type: createUserPortolioConstants.SKILLS_FORM_CHANGED,
     inputName,

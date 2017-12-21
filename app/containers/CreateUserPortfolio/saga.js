@@ -99,7 +99,7 @@ export function* requestAddUserSkillsSaga() {
 
 const setUserSkillsToDatabase = async (userSkills) => {
   try {
-    await database.ref(`/Portfolios/${userSkills.uid}/Skills`).set(userSkills);
+    await database.ref(`/Portfolios/${userSkills.uid}/Skills`).push(userSkills);
     return userSkills;
   } catch (error) {
     return false;

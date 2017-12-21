@@ -7,10 +7,6 @@ export const makeSelectPersonalInfoFormData = () =>
   createSelector(selectCreateUserPortfolioDomain, (substate) =>
     substate.get('personalinfoFormData').toJS()
   );
-export const makeSelectUserImageData = () =>
-  createSelector(selectCreateUserPortfolioDomain, (substate) =>
-    substate.get('userImageData').toJS()
-  );
 
 export const makeSelectUserSkillsForm = () =>
   createSelector(selectCreateUserPortfolioDomain, (substate) =>
@@ -39,10 +35,7 @@ export const makeSelectAddingInfoSuccess = () =>
   createSelector(selectCreateUserPortfolioDomain, (substate) =>
     substate.get('personalInfo').toJS()
   );
-export const makeSelectUserImageSuccess = () =>
-  createSelector(selectCreateUserPortfolioDomain, (substate) =>
-    substate.get('userImage').toJS()
-  );
+
 export const makeSelectAddingSkillsSuccess = () =>
   createSelector(selectCreateUserPortfolioDomain, (substate) =>
     substate.get('userSkills').toJS()
