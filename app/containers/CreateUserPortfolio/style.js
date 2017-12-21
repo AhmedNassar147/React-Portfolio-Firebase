@@ -17,11 +17,9 @@ export const ImageInput = {
   opacity: 0,
 };
 
-
 export const customPadding = {
   padding: '0px 5px',
 };
-
 
 export const customWidth = {
   width: '50%',

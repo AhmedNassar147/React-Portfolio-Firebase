@@ -104,7 +104,7 @@ export class UserEducation extends React.Component {
             label="Add Education"
             fullWidth
             style={{ margin: '13px 0px 5px 0px' }}
-            secondary
+            primary
             onClick={requestAddEducation}
           />
         </div>

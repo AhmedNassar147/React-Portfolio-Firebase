@@ -47,22 +47,28 @@ class UserImages extends React.Component {
       <div>
         <h5 style={userInfoStyle}>Upload Your Image</h5>
         <div style={customPadding}>
-          <h4>{this.state.errorMsg}</h4>
-          <h4>{this.state.successMsg}</h4>
-          <LinearProgress mode="determinate" value={this.state.uploadValue} />
-          <br />
-          <RaisedButton
-            fullWidth
-            label="Choose an Image"
-            labelPosition="before"
-            containerElement="label"
-          >
-            <input
-              type="file"
-              onChange={this.handleChange}
-              style={ImageInput}
-            />
-          </RaisedButton>
+          <div>
+            <cenetr>
+              <h4>{this.state.errorMsg}</h4>
+              <h4>{this.state.successMsg}</h4>
+            </cenetr>
+            <LinearProgress mode="determinate" value={this.state.uploadValue} />
+            <br />
+            <RaisedButton
+              fullWidth
+              label="Choose an Image"
+              labelPosition="before"
+              containerElement="label"
+              primary
+              style={{ margin: '13px 0px 5px 0px' }}
+            >
+              <input
+                type="file"
+                onChange={this.handleChange}
+                style={ImageInput}
+              />
+            </RaisedButton>
+          </div>
         </div>
       </div>
     );

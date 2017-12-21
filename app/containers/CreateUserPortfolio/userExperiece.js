@@ -80,7 +80,7 @@ export default class UserExperience extends React.Component {
             label="Add Experience"
             fullWidth
             style={{ margin: '13px 0px 5px 0px' }}
-            secondary
+            primary
             onClick={requestAddExperience}
           />
         </div>
