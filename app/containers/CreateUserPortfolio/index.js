@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
-import { Paper, Step, Stepper, StepButton, StepContent, RaisedButton, FlatButton } from 'material-ui';
+import { Paper, Step, Stepper, StepButton, RaisedButton, FlatButton } from 'material-ui';
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
@@ -21,14 +21,63 @@ import { makeSelectCurrentUser } from '../App/selectors';
 
 // eslint-disable-next-line
 export class CreateUserPortfolio extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       stepIndex: 0,
     };
   }
   componentWillMount() {
     this.props.onCreateUserPortfolioLoading();
+  }
+
+  getStepContent(stepIndex) {
+    switch (stepIndex) {
+      case 0:
+        return (
+          <Paper>
+            <UserImages currentUser={this.props.currentUser} />
+          </Paper>
+        );
+      case 1:
+        return (
+          <Paper>
+            <UserInfo
+              personalInfoFormChanged={this.props.personalInfoFormChanged}
+              requestAddPersonalInfo={this.props.onRequestAddPersonalinfo}
+            />
+          </Paper>
+        );
+      case 2:
+        return (
+          <Paper>
+            <AddSkills
+              skillsFormChanged={this.props.onSkillsFormChanged}
+              addingUserSkills={this.props.OnRequestAddingUserSkills}
+            />
+          </Paper>
+        );
+      case 3: return (
+        <Paper>
+          <UserExperience
+            userExperienceFormChanged={this.props.onUserExperienceFormChanged}
+            datePickerChanged={this.props.onDatePickerChanged}
+            requestAddExperience={this.props.onRequestAddExperience}
+          />
+        </Paper>
+      );
+      case 4: return (
+        <Paper>
+          <UserEducation
+            userEducationFormChanged={this.props.onUserEducationFormChanged}
+            dropdownChanged={this.props.onDropdownChanged}
+            requestAddEducation={this.props.onRequestAddEducation}
+          />
+        </Paper>
+      );
+      default:
+        return 'You\'re a long way from home sonny jim!';
+    }
   }
   handelNextStep = () => {
     const { stepIndex } = this.state;
@@ -42,122 +91,61 @@ export class CreateUserPortfolio extends React.Component {
       this.setState({ stepIndex: stepIndex - 1 });
     }
   };
-  renderStepActions(step) {
-    return (
-      <div style={{ margin: '12px 0' }}>
-        <RaisedButton
-          label="Next"
-          disableTouchRipple
-          disableFocusRipple
-          primary
-          onClick={this.handelNextStep}
-          style={{ marginRight: 12 }}
-        />
-        {step > 0 && (
-          <FlatButton
-            label="Back"
-            disableTouchRipple
-            disableFocusRipple
-            onClick={this.handelPrevStep}
-          />
-        )}
-      </div>
-    );
-  }
   render() {
-    const {
-      personalInfoFormChanged,
-      onRequestAddPersonalinfo,
-      onSkillsFormChanged,
-      OnRequestAddingUserSkills,
-      onUserExperienceFormChanged,
-      onDatePickerChanged,
-      onRequestAddExperience,
-      onUserEducationFormChanged,
-      onDropdownChanged,
-      onRequestAddEducation,
-      currentUser,
-    } = this.props;
-
     const { stepIndex } = this.state;
+    const contentStyle = { margin: '0 16px' };
     return (
-      <div style={{ maxWidth: 420, maxHeight: 400, margin: 'auto' }}>
-        <Stepper activeStep={stepIndex} linear={false} orientation="vertical">
+      <div style={{ width: '100%', maxWidth: 700, margin: 'auto' }}>
+        <Stepper activeStep={stepIndex} linear={false} >
           <Step>
             <StepButton onClick={() => this.setState({ stepIndex: 0 })}>
              Image
             </StepButton>
-            <StepContent>
-              <Paper>
-                <UserImages currentUser={currentUser} />
-              </Paper>
-              {this.renderStepActions(0)}
-            </StepContent>
           </Step>
 
           <Step>
             <StepButton onClick={() => this.setState({ stepIndex: 1 })}>
               Personal Information
             </StepButton>
-            <StepContent>
-              <Paper>
-                <UserInfo
-                  personalInfoFormChanged={personalInfoFormChanged}
-                  requestAddPersonalInfo={onRequestAddPersonalinfo}
-                />
-              </Paper>
-              {this.renderStepActions(1)}
-            </StepContent>
           </Step>
 
           <Step>
             <StepButton onClick={() => this.setState({ stepIndex: 2 })} >
               Skills
             </StepButton>
-            <StepContent>
-              <Paper>
-                <AddSkills
-                  skillsFormChanged={onSkillsFormChanged}
-                  addingUserSkills={OnRequestAddingUserSkills}
-                />
-              </Paper>
-              {this.renderStepActions(2)}
-            </StepContent>
           </Step>
 
           <Step>
             <StepButton onClick={() => this.setState({ stepIndex: 3 })} >
               Experience
             </StepButton>
-            <StepContent>
-              <Paper>
-                <UserExperience
-                  userExperienceFormChanged={onUserExperienceFormChanged}
-                  datePickerChanged={onDatePickerChanged}
-                  requestAddExperience={onRequestAddExperience}
-                />
-              </Paper>
-              {this.renderStepActions(3)}
-            </StepContent>
           </Step>
 
           <Step>
             <StepButton onClick={() => this.setState({ stepIndex: 4 })} >
               Education
             </StepButton>
-            <StepContent>
-              <Paper>
-                <UserEducation
-                  userEducationFormChanged={onUserEducationFormChanged}
-                  dropdownChanged={onDropdownChanged}
-                  requestAddEducation={onRequestAddEducation}
-                />
-              </Paper>
-              {this.renderStepActions(4)}
-            </StepContent>
           </Step>
-
         </Stepper>
+        <div>
+          <div style={contentStyle}>
+            {this.getStepContent(stepIndex)}
+          </div>
+          <div style={{ marginTop: 12 }}>
+            <FlatButton
+              label="Back"
+              disabled={stepIndex === 0}
+              onClick={this.handelPrevStep}
+              style={{ marginRight: 12 }}
+            />
+            <RaisedButton
+              label="Next"
+              disabled={stepIndex === 4}
+              primary
+              onClick={this.handelNextStep}
+            />
+          </div>
+        </div>
       </div>
     );
   }
