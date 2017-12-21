@@ -13,6 +13,7 @@ import saga from './saga';
 import mainPageActions from './actions';
 import {
   makeSelectSliderImages,
+  makeSelectCurrentUser,
 } from '../App/selectors';
 import Appbar from '../../components/Appbar/index';
 import SliderGalary from '../../components/SliderGalary/index';
@@ -30,7 +31,9 @@ export class MainPage extends React.Component {
       signOut,
       headToCreatePortfolio,
       headToUserProfile,
+      currentUser,
     } = this.props;
+
     return (
       <div>
         <div>
@@ -38,6 +41,7 @@ export class MainPage extends React.Component {
             signOut={signOut}
             headToCreatePortfolio={headToCreatePortfolio}
             headToUserProfile={headToUserProfile}
+            currentUser={currentUser}
           />
         </div>
 
@@ -60,11 +64,13 @@ MainPage.propTypes = {
   signOut: PropTypes.func.isRequired,
   headToCreatePortfolio: PropTypes.func,
   headToUserProfile: PropTypes.func,
+  currentUser: PropTypes.objectOf(PropTypes.string),
 };
 
 const mapStateToProps = createStructuredSelector({
   mainpage: makeSelectMainPage(),
   sliderImages: makeSelectSliderImages(),
+  currentUser: makeSelectCurrentUser(),
 });
 
 function mapDispatchToProps(dispatch) {

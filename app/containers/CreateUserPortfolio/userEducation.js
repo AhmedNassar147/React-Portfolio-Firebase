@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { TextField, RaisedButton, MenuItem, DropDownMenu } from 'material-ui';
-import { userInfoStyle, customPadding, customWidth } from './style';
+import { customPadding, customWidth } from './style';
 
 
 // eslint-disable-next-line
@@ -30,84 +30,81 @@ export class UserEducation extends React.Component {
     const { userEducationFormChanged, requestAddEducation } = this.props;
 
     return (
-      <div>
-        <h5 style={userInfoStyle}>Education</h5>
-        <div style={customPadding}>
-          <div>
-            <TextField
-              type="text"
-              name="school"
-              autoFocus
-              hintText="like Ain Shams university"
-              fullWidth
-              floatingLabelText="School"
-              floatingLabelStyle={{ fontSize: 'medium' }}
-              onChange={userEducationFormChanged}
-            />
-            <TextField
-              type="text"
-              name="degree"
-              autoFocus
-              hintText="like bacholar degree"
-              fullWidth
-              floatingLabelText="Degree"
-              floatingLabelStyle={{ fontSize: 'medium' }}
-              onChange={userEducationFormChanged}
-            />
-            <TextField
-              type="text"
-              name="studyField"
-              autoFocus
-              hintText="like computer science"
-              fullWidth
-              floatingLabelText="Field of Study"
-              floatingLabelStyle={{ fontSize: 'medium' }}
-              onChange={userEducationFormChanged}
-            />
-            <TextField
-              type="text"
-              autoFocus
-              name="grade"
-              fullWidth
-              floatingLabelText="Grade"
-              floatingLabelStyle={{ fontSize: 'medium' }}
-              onChange={userEducationFormChanged}
-            />
-            <DropDownMenu
-              autoWidth={false}
-              style={customWidth}
-              animated
-              maxHeight={300}
-              value={this.state.fromYear}
-              onChange={this.handleFromYearChange}
-              targetOrigin={{ horizontal: 'left', vertical: 'bottom' }}
-              anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
-            >
-              {items}
-            </DropDownMenu>
-
-            <DropDownMenu
-              autoWidth={false}
-              style={customWidth}
-              animated
-              maxHeight={300}
-              value={this.state.toYear}
-              onChange={this.handleToYearChange}
-              targetOrigin={{ horizontal: 'left', vertical: 'bottom' }}
-              anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
-            >
-              {items}
-            </DropDownMenu>
-          </div>
-
-          <RaisedButton
-            label="Add Education"
+      <div style={customPadding}>
+        <div>
+          <TextField
+            type="text"
+            name="school"
+            autoFocus
+            hintText="like Ain Shams university"
             fullWidth
-            style={{ margin: '13px 0px 5px 0px' }}
-            primary
-            onClick={requestAddEducation}
+            floatingLabelText="School"
+            floatingLabelStyle={{ fontSize: 'medium' }}
+            onChange={userEducationFormChanged}
           />
+          <TextField
+            type="text"
+            name="degree"
+            autoFocus
+            hintText="like bacholar degree"
+            fullWidth
+            floatingLabelText="Degree"
+            floatingLabelStyle={{ fontSize: 'medium' }}
+            onChange={userEducationFormChanged}
+          />
+          <TextField
+            type="text"
+            name="studyField"
+            autoFocus
+            hintText="like computer science"
+            fullWidth
+            floatingLabelText="Field of Study"
+            floatingLabelStyle={{ fontSize: 'medium' }}
+            onChange={userEducationFormChanged}
+          />
+          <TextField
+            type="text"
+            autoFocus
+            name="grade"
+            fullWidth
+            floatingLabelText="Grade"
+            floatingLabelStyle={{ fontSize: 'medium' }}
+            onChange={userEducationFormChanged}
+          />
+          <DropDownMenu
+            autoWidth={false}
+            style={customWidth}
+            animated
+            maxHeight={300}
+            value={this.state.fromYear}
+            onChange={this.handleFromYearChange}
+            targetOrigin={{ horizontal: 'left', vertical: 'bottom' }}
+            anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
+          >
+            {items}
+          </DropDownMenu>
+
+          <DropDownMenu
+            autoWidth={false}
+            style={customWidth}
+            animated
+            maxHeight={300}
+            value={this.state.toYear}
+            onChange={this.handleToYearChange}
+            targetOrigin={{ horizontal: 'left', vertical: 'bottom' }}
+            anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
+          >
+            {items}
+          </DropDownMenu>
         </div>
+
+        <RaisedButton
+          label="Add Education"
+          fullWidth
+          style={{ margin: '13px 0px 5px 0px' }}
+          primary
+          onClick={requestAddEducation}
+        />
       </div>
     );
   }

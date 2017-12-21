@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { TextField, RaisedButton } from 'material-ui';
-import { userInfoStyle, customPadding } from './style';
+import { customPadding } from './style';
 
 
 // eslint-disable-next-line
@@ -23,36 +23,33 @@ export default class AddSkills extends React.Component {
   render() {
     const { skillsFormChanged, addingUserSkills } = this.props;
     return (
-      <div>
-        <h5 style={userInfoStyle}>Skills</h5>
-        <div style={customPadding}>
-          <div>
-            {this.state.inputs.map((input, name) => (
-              <TextField
-                key={input}
-                type="text"
-                name={`${name}`}
-                fullWidth
-                floatingLabelText={`Skill ${name}`}
-                floatingLabelStyle={{ fontSize: 'medium' }}
-                onChange={skillsFormChanged}
-              />
-            ))}
-          </div>
-          <RaisedButton
-            label="create new skill"
-            fullWidth
-            style={{ margin: '13px 0px 5px 0px' }}
-            onClick={this.addNewInput}
-          />
-          <RaisedButton
-            label="ADD your Skills"
-            fullWidth
-            primary
-            style={{ margin: '13px 0px 5px 0px' }}
-            onClick={addingUserSkills}
-          />
+      <div style={customPadding}>
+        <div>
+          {this.state.inputs.map((input, name) => (
+            <TextField
+              key={input}
+              type="text"
+              name={`${name}`}
+              fullWidth
+              floatingLabelText={`Skill ${name}`}
+              floatingLabelStyle={{ fontSize: 'medium' }}
+              onChange={skillsFormChanged}
+            />
+          ))}
         </div>
+        <RaisedButton
+          label="create new skill"
+          fullWidth
+          style={{ margin: '13px 0px 5px 0px' }}
+          onClick={this.addNewInput}
+        />
+        <RaisedButton
+          label="ADD your Skills"
+          fullWidth
+          primary
+          style={{ margin: '13px 0px 5px 0px' }}
+          onClick={addingUserSkills}
+        />
       </div>
     );
   }

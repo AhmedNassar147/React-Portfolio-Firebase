@@ -8,11 +8,10 @@ import {
   IconButton,
 } from 'material-ui';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
-
 //eslint-disable-next-line
 class Appbar extends React.Component {
   render() {
-    const { signOut, headToCreatePortfolio, headToUserProfile } = this.props;
+    const { signOut, headToCreatePortfolio, headToUserProfile, currentUser } = this.props;
     return (
       <div>
         <AppBar
@@ -24,7 +23,7 @@ class Appbar extends React.Component {
               anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
               targetOrigin={{ horizontal: 'right', vertical: 'top' }}
             >
-              <MenuItem primaryText="Profile" onClick={headToUserProfile} leftIcon={<Avatar />} />
+              <MenuItem primaryText={`${currentUser.displayName}`} onClick={headToUserProfile} leftIcon={<Avatar />} />
               <MenuItem primaryText="Create Portfolio" onClick={headToCreatePortfolio} />
               <MenuItem primaryText="SignOut" onClick={signOut} />
             </IconMenu>
@@ -39,6 +38,7 @@ Appbar.propTypes = {
   signOut: PropTypes.func.isRequired,
   headToCreatePortfolio: PropTypes.func,
   headToUserProfile: PropTypes.func,
+  currentUser: PropTypes.objectOf(PropTypes.string),
 };
 
 export default Appbar;

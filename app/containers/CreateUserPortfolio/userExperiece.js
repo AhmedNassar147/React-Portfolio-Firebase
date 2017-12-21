@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { TextField, DatePicker, RaisedButton } from 'material-ui';
-import { userInfoStyle, customPadding } from './style';
+import { customPadding } from './style';
 
 
 // eslint-disable-next-line
@@ -31,59 +31,56 @@ export default class UserExperience extends React.Component {
     const { userExperienceFormChanged, requestAddExperience } = this.props;
 
     return (
-      <div>
-        <h5 style={userInfoStyle}>Experience</h5>
-        <div style={customPadding}>
-          <div>
-            <TextField
-              type="text"
-              name="companyName"
-              fullWidth
-              floatingLabelText="The Company's name"
-              floatingLabelStyle={{ fontSize: 'medium' }}
-              onChange={userExperienceFormChanged}
-            />
-            <TextField
-              type="text"
-              name="companyAddress"
-              fullWidth
-              floatingLabelText="The Company's Address"
-              floatingLabelStyle={{ fontSize: 'medium' }}
-              onChange={userExperienceFormChanged}
-            />
-            <TextField
-              type="text"
-              name="position"
-              fullWidth
-              floatingLabelText="your Position in this Company"
-              floatingLabelStyle={{ fontSize: 'medium' }}
-              onChange={userExperienceFormChanged}
-            />
-
-            <DatePicker
-              hintText="From"
-              name="from"
-              fullWidth
-              openToYearSelection
-              onChange={this.selectStartDate}
-            />
-            <DatePicker
-              hintText="To"
-              name="to"
-              fullWidth
-              openToYearSelection
-              onChange={this.selectEndDate}
-            />
-          </div>
-
-          <RaisedButton
-            label="Add Experience"
+      <div style={customPadding}>
+        <div>
+          <TextField
+            type="text"
+            name="companyName"
             fullWidth
-            style={{ margin: '13px 0px 5px 0px' }}
-            primary
-            onClick={requestAddExperience}
+            floatingLabelText="The Company's name"
+            floatingLabelStyle={{ fontSize: 'medium' }}
+            onChange={userExperienceFormChanged}
+          />
+          <TextField
+            type="text"
+            name="companyAddress"
+            fullWidth
+            floatingLabelText="The Company's Address"
+            floatingLabelStyle={{ fontSize: 'medium' }}
+            onChange={userExperienceFormChanged}
+          />
+          <TextField
+            type="text"
+            name="position"
+            fullWidth
+            floatingLabelText="your Position in this Company"
+            floatingLabelStyle={{ fontSize: 'medium' }}
+            onChange={userExperienceFormChanged}
+          />
+
+          <DatePicker
+            hintText="From"
+            name="from"
+            fullWidth
+            openToYearSelection
+            onChange={this.selectStartDate}
+          />
+          <DatePicker
+            hintText="To"
+            name="to"
+            fullWidth
+            openToYearSelection
+            onChange={this.selectEndDate}
           />
         </div>
+
+        <RaisedButton
+          label="Add Experience"
+          fullWidth
+          style={{ margin: '13px 0px 5px 0px' }}
+          primary
+          onClick={requestAddExperience}
+        />
       </div>
     );
   }
