@@ -2,91 +2,43 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {
   AppBar,
-  Drawer,
-  List,
-  ListItem,
-  RaisedButton,
-  FlatButton,
+  Avatar,
+  IconMenu,
+  MenuItem,
+  IconButton,
 } from 'material-ui';
-
-const drawerUserProfile = {
-  backgroundColor: '#E1BEE7',
-};
-const userDataStyle = {
-  color: '#263238',
-};
-
-const flatbtn = {
-  margin: 'auto',
-  color: '#ffff',
-  border: '1px solid white',
-  marginLeft: '5px',
-};
+import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 
 //eslint-disable-next-line
 class Appbar extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      isDrawerOpen: false,
-    };
-  }
-  openDrawer = () => {
-    this.setState({
-      isDrawerOpen: !this.state.isDrawerOpen,
-    });
-  };
-
   render() {
-    const { currentUser, signOut, headToCreatePortfolio } = this.props;
-    const stringfiedCurrentuser = currentUser;
+    const { signOut, headToCreatePortfolio, headToUserProfile } = this.props;
     return (
       <div>
         <AppBar
           title="portfolio"
           style={{ marginBottom: '2px' }}
-          onLeftIconButtonTouchTap={this.openDrawer}
-        >
-          <FlatButton label="Home" style={flatbtn} hoverColor="#FF80AB" />
-          <FlatButton
-            label="create Portfolio"
-            hoverColor="#FF80AB"
-            style={flatbtn}
-            onClick={headToCreatePortfolio}
-          />
-          <FlatButton label="categories" hoverColor="#FF80AB" style={flatbtn} />
-          <FlatButton label="about" hoverColor="#FF80AB" style={flatbtn} />
-        </AppBar>
-        <Drawer
-          open={this.state.isDrawerOpen}
-          docked={false}
-          onRequestChange={this.openDrawer}
-        >
-          <List style={drawerUserProfile}>
-            <ListItem primaryText="Profile" style={userDataStyle} />
-            <List>
-              <ListItem style={userDataStyle}>{`Name:  ${
-                stringfiedCurrentuser.displayName
-              }`}</ListItem>
-
-              <ListItem style={userDataStyle}>{`Email:  ${
-                stringfiedCurrentuser.email
-              }`}</ListItem>
-            </List>
-          </List>
-          <List>
-            <RaisedButton label="log out" fullWidth onClick={signOut} />
-          </List>
-        </Drawer>
+          iconElementRight={
+            <IconMenu
+              iconButtonElement={<IconButton><MoreVertIcon /></IconButton>}
+              anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
+              targetOrigin={{ horizontal: 'right', vertical: 'top' }}
+            >
+              <MenuItem primaryText="Profile" onClick={headToUserProfile} leftIcon={<Avatar />} />
+              <MenuItem primaryText="Create Portfolio" onClick={headToCreatePortfolio} />
+              <MenuItem primaryText="SignOut" onClick={signOut} />
+            </IconMenu>
+          }
+        />
       </div>
     );
   }
 }
 
 Appbar.propTypes = {
-  currentUser: PropTypes.object,
   signOut: PropTypes.func.isRequired,
   headToCreatePortfolio: PropTypes.func,
+  headToUserProfile: PropTypes.func,
 };
 
 export default Appbar;

@@ -1,51 +1,40 @@
 import React from 'react';
-import { Paper } from 'material-ui';
-const container = {
-  padding: '2px 0px 0px 0px',
-  fontStyle: 'oblique',
-};
-const flexItem = {
-  left: {
-    float: 'left',
-    textAlign: 'justify',
-    padding: '0px 5px',
-  },
-  right: {
-    float: 'right',
-    textAlign: 'justify',
-    padding: '0px 5px',
-  },
-};
+import { RaisedButton } from 'material-ui';
 const Intro = () => (
-  <div style={container}>
-    <Paper style={flexItem.left}>
-      <h1>What is Portfolio?</h1>
-      <div>
-        Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry. Lorem Ipsum has been the industry standard dummy text ever
-        since the 1500s, when an unknown printer took a galley of type and
-        scrambled it to make a type specimen book. It has survived not only five
-        centuries, but also the leap into electronic typesetting, remaining
-        essentially unchanged. It was popularised in the 1960s with the release
-        of Letraset sheets scrambled it to make a type specimen book. It has
-        survived not only five centuries, but also the leap into electronic
-        typesetting, remaining essentially unchanged. It was popularised in the
-        1960s with the release of Letraset sheets
-      </div>
-    </Paper>
-    <Paper style={flexItem.right}>
-      <h1>why Portfolio ? </h1>
-      <div>
-        centuries, but also the leap into electronic typesetting, remaining
-        essentially unchanged. It was popularised in the 1960s with the release
-        of Letraset sheets scrambled it to make a type specimen book. It has
-        survived not only five centuries, but also the leap into electronic
-        typesetting, remaining essentially unchanged. It was popularised in the
-        1960s with the release of Letraset sheets
-      </div>
-    </Paper>
+  <div style={introStyles.container}>
+    <div style={introStyles.SmallChild}></div>
+    <div style={introStyles.BigChild}>
+      <center>
+        <h4>
+        About Portfolio
+        </h4>
+        <h6>Portfolio helps You make your resume quick </h6>
+        <br />
+        <RaisedButton label="GitHub" primary style={introStyles.btnStyle} />
+        <RaisedButton label="LinkedIn" primary style={introStyles.btnStyle} />
+        <RaisedButton label="Facebook" primary style={introStyles.btnStyle} />
+      </center>
+    </div>
+    <div style={introStyles.SmallChild}></div>
   </div>
 );
+const introStyles = {
+  container: {
+    display: 'flex',
+    padding: '5px',
+    marginBottom: '5px',
+  },
+  SmallChild: {
+    flex: 1,
+  },
+  BigChild: {
+    flex: 7,
+  },
+  btnStyle: {
+    margin: '2px',
+    width: '31.5%',
+  },
+};
 
 Intro.propTypes = {};
 

@@ -7,6 +7,7 @@ import CreateUserPortfolio from 'containers/CreateUserPortfolio/Loadable';
 import AdminSignIn from 'containers/AdminSignIn/Loadable';
 import AdminPage from 'containers/AdminPage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
+import UserProfile from 'components/UserProfile/Loadable';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 export default function App() {
   return (
@@ -18,11 +19,8 @@ export default function App() {
           <Route exact path="/admin" component={AdminSignIn} />
           <Route exact path="/adminPage" component={AdminPage} />
           <Route exact path="/main" component={MainPage} />
-          <Route
-            exact
-            path="/createPortfolio"
-            component={CreateUserPortfolio}
-          />
+          <Route exact path="/createPortfolio" component={CreateUserPortfolio} />
+          <Route exact path="/userProfile" component={UserProfile} />
           <Route component={NotFoundPage} />
         </Switch>
       </div>

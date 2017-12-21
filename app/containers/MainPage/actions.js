@@ -30,4 +30,8 @@ export default {
   headToCreatePortfolio: () => ({
     type: mainPageConstants.HEAD_TO_CREARTE_PORTFOLIO,
   }),
+
+  headToUserprofile: () => ({
+    type: mainPageConstants.HEAD_TO_USER_PROFILE,
+  }),
 };

@@ -12,7 +12,6 @@ import reducer from './reducer';
 import saga from './saga';
 import mainPageActions from './actions';
 import {
-  makeSelectCurrentUser,
   makeSelectSliderImages,
 } from '../App/selectors';
 import Appbar from '../../components/Appbar/index';
@@ -27,18 +26,18 @@ export class MainPage extends React.Component {
   }
   render() {
     const {
-      currentUser,
       sliderImages,
       signOut,
       headToCreatePortfolio,
+      headToUserProfile,
     } = this.props;
     return (
       <div>
         <div>
           <Appbar
-            currentUser={currentUser}
             signOut={signOut}
             headToCreatePortfolio={headToCreatePortfolio}
+            headToUserProfile={headToUserProfile}
           />
         </div>
 
@@ -46,9 +45,9 @@ export class MainPage extends React.Component {
           <SliderGalary sliderImages={sliderImages} />
         </Paper>
 
-        <div>
+        <Paper>
           <Intro />
-        </div>
+        </Paper>
       </div>
     );
   }
@@ -57,15 +56,14 @@ export class MainPage extends React.Component {
 MainPage.propTypes = {
   mainPageLoading: PropTypes.func,
   onMainLoadingPrepareSLider: PropTypes.func,
-  currentUser: PropTypes.object,
   sliderImages: PropTypes.arrayOf(PropTypes.object),
   signOut: PropTypes.func.isRequired,
   headToCreatePortfolio: PropTypes.func,
+  headToUserProfile: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
   mainpage: makeSelectMainPage(),
-  currentUser: makeSelectCurrentUser(),
   sliderImages: makeSelectSliderImages(),
 });
 
@@ -77,6 +75,7 @@ function mapDispatchToProps(dispatch) {
     signOut: () => dispatch(mainPageActions.signOut()),
     headToCreatePortfolio: () =>
       dispatch(mainPageActions.headToCreatePortfolio()),
+    headToUserProfile: () => dispatch(mainPageActions.headToUserprofile()),
   };
 }
 

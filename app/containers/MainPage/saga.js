@@ -59,6 +59,18 @@ export function* headToCreatePortfolio() {
     console.log('error when head to create portfolio page', error);
   }
 }
+
+export function* headToUserProfile() {
+  try {
+    const user = localStorage.getItem('user');
+    if (user) {
+      yield put(push('/userProfile'));
+    }
+  } catch (error) {
+    //eslint-disable-next-line
+    console.log('error when head to create portfolio page', error);
+  }
+}
 // Individual exports for testing
 export default function* defaultSaga() {
   yield [takeLatest(MainConstants.MAIN_PAGE_LOADING, MainPageLoadingSaga)];
@@ -66,5 +78,8 @@ export default function* defaultSaga() {
   yield [takeLatest(MainConstants.SIGN_OUT, signOutSage)];
   yield [
     takeLatest(MainConstants.HEAD_TO_CREARTE_PORTFOLIO, headToCreatePortfolio),
+  ];
+  yield [
+    takeLatest(MainConstants.HEAD_TO_USER_PROFILE, headToUserProfile),
   ];
 }
