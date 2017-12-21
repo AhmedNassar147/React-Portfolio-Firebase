@@ -1,7 +1,5 @@
-
 import React from 'react';
-import { Paper  } from 'material-ui';
-
+import { Paper } from 'material-ui';
 
 class UserProfile extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
