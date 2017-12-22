@@ -115,7 +115,7 @@ export class MainPage extends React.Component {
       currentUser,
     } = this.props;
     const { stepIndex } = this.state;
-    const contentStyle = { margin: '0 16px' };
+    const contentStyle = { margin: '2px 16px' };
     return (
       <div>
         <Appbar
@@ -133,7 +133,7 @@ export class MainPage extends React.Component {
         </Paper>
 
         <Paper>
-          <div style={{ width: '100%', maxWidth: 700, margin: 'auto' }}>
+          <div>
             <Stepper activeStep={stepIndex} linear={false} >
               <Step>
                 <StepButton onClick={() => this.setState({ stepIndex: 0 })}>
@@ -165,10 +165,8 @@ export class MainPage extends React.Component {
                 </StepButton>
               </Step>
             </Stepper>
-            <div>
-              <div style={contentStyle}>
-                {this.getStepContent(stepIndex)}
-              </div>
+            <div style={contentStyle}>
+              {this.getStepContent(stepIndex)}
             </div>
           </div>
         </Paper>

@@ -68,6 +68,7 @@ class UserEducation extends React.Component { // eslint-disable-line react/prefe
           <TextField
             type="text"
             autoFocus
+            hintText="grade in this field"
             name="grade"
             fullWidth
             floatingLabelText="Grade"

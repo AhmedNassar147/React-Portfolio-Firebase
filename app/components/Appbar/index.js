@@ -23,8 +23,15 @@ class Appbar extends React.Component {
               anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
               targetOrigin={{ horizontal: 'right', vertical: 'top' }}
             >
-              <MenuItem primaryText={`${currentUser.displayName}`} onClick={headToUserProfile} leftIcon={<Avatar />} />
-              <MenuItem primaryText="SignOut" onClick={signOut} />
+              <MenuItem
+                primaryText={`${currentUser.displayName}`}
+                onClick={headToUserProfile}
+                leftIcon={<Avatar />}
+              />
+              <MenuItem
+                primaryText="SignOut"
+                onClick={signOut}
+              />
             </IconMenu>
           }
         />
