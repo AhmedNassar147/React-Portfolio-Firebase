@@ -1,12 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { TextField, RaisedButton } from 'material-ui';
-import { customPadding } from './style';
+import { customPadding } from '../../containers/MainPage/styles';
 
-// eslint-disable-next-line
-export class UserInfo extends React.Component {
+
+class UserInfo extends React.Component { // eslint-disable-line react/prefer-stateless-function
+  handleRequests = () => {
+    this.props.requestAddPersonalInfo();
+    this.props.handleNext();
+  };
   render() {
-    const { personalInfoFormChanged, requestAddPersonalInfo } = this.props;
+    const { personalInfoFormChanged } = this.props;
     return (
       <div style={customPadding}>
         <TextField
@@ -97,7 +101,7 @@ export class UserInfo extends React.Component {
           fullWidth
           primary
           style={{ margin: '13px 0px 5px 0px' }}
-          onClick={requestAddPersonalInfo}
+          onClick={this.handleRequests}
         />
       </div>
     );
@@ -107,5 +111,7 @@ export class UserInfo extends React.Component {
 UserInfo.propTypes = {
   personalInfoFormChanged: PropTypes.func.isRequired,
   requestAddPersonalInfo: PropTypes.func.isRequired,
+  handleNext: PropTypes.func,
 };
+
 export default UserInfo;

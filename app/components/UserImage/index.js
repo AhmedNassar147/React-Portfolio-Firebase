@@ -1,12 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { RaisedButton, LinearProgress } from 'material-ui';
-import { userInfoStyle, ImageInput, customPadding } from './style';
+import { userInfoStyle, ImageInput, customPadding } from '../../containers/MainPage/styles';
 import { storage, database } from '../../utils/firebase';
 
 
-//eslint-disable-next-line
-class UserImages extends React.Component {
+class UserImage extends React.Component { // eslint-disable-line react/prefer-stateless-function
   constructor(props) {
     super(props);
     this.state = {
@@ -38,6 +37,7 @@ class UserImages extends React.Component {
         database.ref(`/Portfolios/${user.uid}/userImage`).set({
           userImage: url,
         });
+        this.props.handleNext();
       }
     );
   };
@@ -75,8 +75,9 @@ class UserImages extends React.Component {
   }
 }
 
-UserImages.propTypes = {
-  currentUser: PropTypes.objectOf(PropTypes.object),
+UserImage.propTypes = {
+  currentUser: PropTypes.objectOf(PropTypes.string),
+  handleNext: PropTypes.func,
 };
 
-export default UserImages;
+export default UserImage;

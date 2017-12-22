@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { TextField, RaisedButton, MenuItem, DropDownMenu } from 'material-ui';
-import { customPadding, customWidth } from './style';
+import { customPadding, customWidth } from '../../containers/MainPage/styles';
 
 
-// eslint-disable-next-line
-export class UserEducation extends React.Component {
+class UserEducation extends React.Component { // eslint-disable-line react/prefer-stateless-function
   constructor(props) {
     super(props);
     this.state = { fromYear: 1980, toYear: 1985 };
@@ -21,13 +20,17 @@ export class UserEducation extends React.Component {
     });
     this.props.dropdownChanged('toYear', value);
   };
+  handleReqeusts = () => {
+    this.props.requestAddEducation();
+    this.props.handleNext();
+  };
 
   render() {
     const items = [];
     for (let i = 1975; i < 2026; i += 1) {
       items.push(<MenuItem value={i} key={i} primaryText={`${i}`} />);
     }
-    const { userEducationFormChanged, requestAddEducation } = this.props;
+    const { userEducationFormChanged } = this.props;
 
     return (
       <div style={customPadding}>
@@ -103,16 +106,19 @@ export class UserEducation extends React.Component {
           fullWidth
           style={{ margin: '13px 0px 5px 0px' }}
           primary
-          onClick={requestAddEducation}
+          onClick={this.handleReqeusts}
         />
       </div>
     );
   }
 }
 
+
 UserEducation.propTypes = {
   userEducationFormChanged: PropTypes.func.isRequired,
   dropdownChanged: PropTypes.func.isRequired,
   requestAddEducation: PropTypes.func.isRequired,
+  handleNext: PropTypes.func,
 };
+
 export default UserEducation;

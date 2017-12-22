@@ -5,7 +5,6 @@ import loginconstants from '../../containers/LoginPage/constants';
 import signUpConstants from '../../containers/SignUpPage/constants';
 import LoginAdminConstants from '../../containers/AdminSignIn/constants';
 import adminPageConstants from '../../containers/AdminPage/constants';
-import createUserPortfolioConstanst from '../../containers/CreateUserPortfolio/constants';
 
 // The initial state of the App
 const initialState = fromJS({
@@ -21,14 +20,12 @@ function appReducer(state = initialState, action) {
     case mainConstants.MAIN_PAGE_LOADING_SUCCUSS:
     case LoginAdminConstants.LOGIN_SUCCESS:
     case adminPageConstants.ADMIN_PAGE_LOADING_SUCCESS:
-    case createUserPortfolioConstanst.CREATE_USER_PAGE_LOADING_SUCCESS:
       return state.merge({
         userData: action.user,
       });
 
     case mainConstants.MAIN_PAGE_LOADING_FAILURE:
     case adminPageConstants.ADMIN_PAGE_LOADING_FAILURE:
-    case createUserPortfolioConstanst.CREATE_USER_PAGE_LOADING_FAILURE:
       return state.merge({
         error: action.error,
       });

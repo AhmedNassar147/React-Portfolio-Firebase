@@ -1,13 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { TextField, DatePicker, RaisedButton } from 'material-ui';
-import { customPadding } from './style';
+import { customPadding } from '../../containers/MainPage/styles';
 
-
-// eslint-disable-next-line
-export default class UserExperience extends React.Component {
-  constructor() {
-    super();
+class UserExperience extends React.Component { // eslint-disable-line react/prefer-stateless-function
+  constructor(props) {
+    super(props);
     this.state = {
       startDate: null,
       endDate: null,
@@ -26,9 +24,13 @@ export default class UserExperience extends React.Component {
     });
     this.props.datePickerChanged('toDate', date);
   };
+  handleRequests = () => {
+    this.props.requestAddExperience();
+    this.props.handleNext();
+  };
 
   render() {
-    const { userExperienceFormChanged, requestAddExperience } = this.props;
+    const { userExperienceFormChanged } = this.props;
 
     return (
       <div style={customPadding}>
@@ -79,7 +81,7 @@ export default class UserExperience extends React.Component {
           fullWidth
           style={{ margin: '13px 0px 5px 0px' }}
           primary
-          onClick={requestAddExperience}
+          onClick={this.handleRequests}
         />
       </div>
     );
@@ -90,4 +92,7 @@ UserExperience.propTypes = {
   userExperienceFormChanged: PropTypes.func,
   datePickerChanged: PropTypes.func,
   requestAddExperience: PropTypes.func,
+  handleNext: PropTypes.func,
 };
+
+export default UserExperience;

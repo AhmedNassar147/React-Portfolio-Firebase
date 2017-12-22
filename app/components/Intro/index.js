@@ -32,7 +32,7 @@ const introStyles = {
   },
   btnStyle: {
     margin: '2px',
-    width: '31.5%',
+    width: '21%',
   },
 };
 

@@ -1,6 +1,6 @@
 /**
  *
- * Asynchronously loads the component for CreateUserPortfolio
+ * Asynchronously loads the component for UserInfo
  *
  */
 

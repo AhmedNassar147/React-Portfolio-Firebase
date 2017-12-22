@@ -3,7 +3,6 @@ import { Switch, Route } from 'react-router-dom';
 import LoginPage from 'containers/LoginPage/Loadable';
 import signUpPage from 'containers/SignUpPage/Loadable';
 import MainPage from 'containers/MainPage/Loadable';
-import CreateUserPortfolio from 'containers/CreateUserPortfolio/Loadable';
 import AdminSignIn from 'containers/AdminSignIn/Loadable';
 import AdminPage from 'containers/AdminPage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
@@ -19,7 +18,6 @@ export default function App() {
           <Route exact path="/admin" component={AdminSignIn} />
           <Route exact path="/adminPage" component={AdminPage} />
           <Route exact path="/main" component={MainPage} />
-          <Route exact path="/createPortfolio" component={CreateUserPortfolio} />
           <Route exact path="/userProfile" component={UserProfile} />
           <Route component={NotFoundPage} />
         </Switch>

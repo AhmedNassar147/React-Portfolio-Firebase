@@ -1,11 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { TextField, RaisedButton } from 'material-ui';
-import { customPadding } from './style';
+import { customPadding } from '../../containers/MainPage/styles';
 
-
-// eslint-disable-next-line
-export default class AddSkills extends React.Component {
+class UserSkills extends React.Component { // eslint-disable-line react/prefer-stateless-function
   constructor() {
     super();
     this.state = {
@@ -20,8 +18,12 @@ export default class AddSkills extends React.Component {
       inputs: this.state.inputs.concat([newInput]),
     });
   };
+  handelRequests = () => {
+    this.props.addingUserSkills();
+    this.props.handleNext();
+  }
   render() {
-    const { skillsFormChanged, addingUserSkills } = this.props;
+    const { skillsFormChanged } = this.props;
     return (
       <div style={customPadding}>
         <div>
@@ -48,13 +50,17 @@ export default class AddSkills extends React.Component {
           fullWidth
           primary
           style={{ margin: '13px 0px 5px 0px' }}
-          onClick={addingUserSkills}
+          onClick={this.handelRequests}
         />
       </div>
     );
   }
 }
-AddSkills.propTypes = {
+
+UserSkills.propTypes = {
   skillsFormChanged: PropTypes.func,
   addingUserSkills: PropTypes.func,
+  handleNext: PropTypes.func,
 };
+
+export default UserSkills;
